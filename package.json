@@ -1,0 +1,25 @@
+{
+  "name": "runstant-cli",
+  "version": "1.0.0",
+  "description": "runstant-cli",
+  "main": "index.js",
+  "bin": {
+    "runstant-cli": "bin/runstant-cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phi-jp/runstant-cli.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phi-jp/runstant-cli/issues"
+  },
+  "homepage": "https://github.com/phi-jp/runstant-cli",
+  "dependencies": {
+    "pako": "^0.2.8"
+  }
+}
