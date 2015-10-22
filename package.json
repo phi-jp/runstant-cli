@@ -7,7 +7,8 @@
     "runstant-cli": "bin/runstant-cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/runstant-cli"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/phi-jp/runstant-cli",
   "dependencies": {
-    "pako": "^0.2.8"
+    "pako": "^0.2.8",
+    "request": "^2.65.0"
   }
 }
