@@ -5,6 +5,7 @@ var url = require('url');
 var querystring = require('querystring');
 var pako = require('pako');
 var request = require('request');
+var spawn = require('child_process').spawn;
 
 var command = process.argv[2];
 var target = process.argv[3];
@@ -15,9 +16,21 @@ var data = 'dVPPb9MwFP5XPLNJW5UfTbtNW9buxIED0qSJYy5u8tIEXLuynZZSRaIrF8QFOIB2mHbg
 function atob(str) {
   return new Buffer(str, 'base64').toString('binary');
 }
+function btoa(str) {
+  var buffer;
+  if (str instanceof Buffer) {
+    buffer = str;
+  }
+  else {
+    buffer = new Buffer(str.toString(), 'binary');
+  }
+  return buffer.toString('base64');
+}
 
-var encode = function() {
-
+var encode = function(obj) {
+  var str = JSON.stringify(obj);
+  var data = pako.deflate(str, { to: 'string',raw:true });
+  return btoa(data);
 };
 
 var decode = function(str) {
@@ -25,6 +38,17 @@ var decode = function(str) {
   data = pako.inflate(data, { to: 'string', raw:true, });
   return JSON.parse(data);
 };
+
+if (command === 'push') {
+  var base = 'http://lite.runstant.com?v=0.0.3';
+  var file = path.join(target, 'runstant.json');
+  var data = fs.readFileSync(file, 'utf8');
+  var obj = JSON.parse(data);
+  var hash = encode(obj);
+  var url = base + '#' + hash;
+
+  spawn('open', [url]);
+}
 
 if (command === 'pull') {
   // var obj = decode(data);
