@@ -17,13 +17,14 @@ function atob(str) {
   return new Buffer(str, 'base64').toString('binary');
 }
 function btoa(str) {
-  var buffer;
-  if (str instanceof Buffer) {
+  var buffer
+  if (Buffer.isBuffer(str)) {
     buffer = str;
   }
   else {
     buffer = new Buffer(str.toString(), 'binary');
   }
+  
   return buffer.toString('base64');
 }
 
